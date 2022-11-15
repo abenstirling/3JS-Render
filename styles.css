@@ -1,4 +1,22 @@
-#c {
-  width: 50%;
-  border-radius: 20px;
-}
+/* */
+#3D-model-container {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}   
+
+  #left {
+    float: left;
+    width: 50%;
+  }
+  #right {
+    float: left;
+    width: 50%;
+  }
+
+  #c {
+    border-radius: 15px;
+    width: 80%;
+  }

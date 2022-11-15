@@ -1,7 +1,9 @@
 <html>
     <head>
-        <title>My First Page</title>
-        <!-- Include the CSS file -->
+        <title>Three.JS Demo</title>
+        <!--have icon be a bear-->
+        <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fblackboxsecurity.us%2Fwp-content%2Fuploads%2F2019%2F02%2Fcropped-blackbox-cube.png%3Ffit%3D1416%252C1434%26ssl%3D1&f=1&nofb=1&ipt=a74da2816b3395f8f06e8b85966dc758c9a48322c968fe7405c1e1441e6cb5e8&ipo=images">
+        <!-- InThclude the CSS file -->
         <link rel="stylesheet" href="styles.css">
     </head>
     <script  type="importmap">{
@@ -13,8 +15,15 @@
     <!--import main.js-->
     <script type="module" src="main.js"></script>
     <body>
-        <div id="3D-model">
-        <canvas width="50%" height="50%" id="c"></canvas>
-        </div
+        <div id="3D-model-container"></div>
+                <div id="right">
+                    <canvas id="c"></canvas>
+                </div>
+                <div id="left">
+                    <h3>This is a demo for Three.js</h3>
+                    <p>Please checkout <a href="https://github.com/abenstirling/GLTF-Test">the link</a> to make your own!</p>
+                </div>
+                <p>
+        </div>
     </body>
 </html>
