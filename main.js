@@ -7,11 +7,28 @@ function main() {
   const renderer = new THREE.WebGLRenderer({canvas});
   renderer.outputEncoding = THREE.sRGBEncoding;
 
+  // reset and start/stop buttons
+  const startStopButton = document.querySelector('#startStop');
+  const resetButton = document.querySelector('#reset');
+  let isAnimating = true;
+
+  startStopButton.addEventListener('click', () => {
+    isAnimating = !isAnimating;
+  });
+
+  resetButton.addEventListener('click', () => {
+    // Call the main method, which resets everything. 
+    main();
+
+});
+
+
+  //Pause rotation
   var mouseDown = 0;
-  document.body.onmousedown = function() { 
+  canvas.onmousedown = function() {
     ++mouseDown;
-  } 
-  document.body.onmouseup = function() {
+  }
+  canvas.onmouseup = function() {
     --mouseDown;
   }
 
@@ -112,8 +129,8 @@ function main() {
       camera.updateProjectionMatrix();
     }
     
-    if (mouseDown == 0) {
-      scene.rotateZ(0.01);
+    if (mouseDown == 0 && isAnimating) {
+      scene.rotateZ(0.005);
     }
 
     renderer.render(scene, camera);
