@@ -1,6 +1,12 @@
+"use strict";
+
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+  alert("This site is not optimized for mobile devices. Please use a desktop computer for the best experience.");
+}
 
 function main() {
   const canvas = document.querySelector('#c');
