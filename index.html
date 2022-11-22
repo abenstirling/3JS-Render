@@ -2,17 +2,24 @@
     <head>
         <title>Three.JS Demo</title>
         <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi0.wp.com%2Fblackboxsecurity.us%2Fwp-content%2Fuploads%2F2019%2F02%2Fcropped-blackbox-cube.png%3Ffit%3D1416%252C1434%26ssl%3D1&f=1&nofb=1&ipt=a74da2816b3395f8f06e8b85966dc758c9a48322c968fe7405c1e1441e6cb5e8&ipo=images">  
+        
+        <!-- You need this CSS import for style-points -->
         <link rel="stylesheet" href="styles.css">
     </head>
+
+    <!-- You need these javascript imports -->
     <script  type="importmap">{
         "imports": {
             "three": "https://threejs.org/build/three.module.js",
             "three/addons/": "https://threejs.org/examples/jsm/"
         }}
     </script>
-    <!--import main.js-->
     <script type="module" src="main.js"></script>
+    
+    
     <body>
+
+        <!-- Below is the container which has 1/2 model, 1/2 text -->
         <div id="3D-model-container"></div>
                 <div id="right">
                     <center> 
@@ -25,9 +32,12 @@
                 </div>
                 <div id="left">
                     <h3>This is a demo for Three.js</h3>
-                    <p>Please checkout <a href="https://github.com/abenstirling/GLTF-Test">the link</a> to make your own!</p>
+                    <p>Please checkout <a href="https://github.com/abenstirling/GLTF-Test">this repository</a> to embed and customize on your own site!</p>
+                    <p>Made possible by <a href="https://threejs.org/">Three.js</a></p>
                 </div>
                 <p>
         </div>
+
+        <!-- End of the useful container-->
     </body>
 </html>

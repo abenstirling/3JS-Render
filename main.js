@@ -1,49 +1,54 @@
 "use strict";
 
-import * as THREE from 'three';
-import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-  alert("This site is not optimized for mobile devices. Please use a desktop computer for the best experience.");
+// Patch to at least let users know that
+if (
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+    navigator.userAgent
+  )
+) {
+  alert(
+    "This site is not optimized for mobile devices. Please use a desktop computer for the best experience."
+  );
 }
 
 function main() {
-  const canvas = document.querySelector('#c');
-  const renderer = new THREE.WebGLRenderer({canvas});
+  const canvas = document.querySelector("#c");
+  const renderer = new THREE.WebGLRenderer({ canvas });
   renderer.outputEncoding = THREE.sRGBEncoding;
 
   // reset and start/stop buttons
-  const startStopButton = document.querySelector('#startStop');
-  const resetButton = document.querySelector('#reset');
+  const startStopButton = document.querySelector("#startStop");
+  const resetButton = document.querySelector("#reset");
   let isAnimating = true;
 
-  startStopButton.addEventListener('click', () => {
+  startStopButton.addEventListener("click", () => {
     isAnimating = !isAnimating;
   });
 
-  resetButton.addEventListener('click', () => {
-    // Call the main method, which resets everything. 
+  resetButton.addEventListener("click", () => {
+    // Call the main method, which resets everything.
     main();
-
-});
-
+  });
 
   //Pause rotation
   var mouseDown = 0;
-  canvas.onmousedown = function() {
+  canvas.onmousedown = function () {
     ++mouseDown;
-  }
-  canvas.onmouseup = function() {
+  };
+  canvas.onmouseup = function () {
     --mouseDown;
-  }
+  };
 
   const fov = 45;
-  const aspect = 2;  // the canvas default
+  const aspect = 2;
   const near = 0.05;
   const far = 100;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0,5,0);
+  camera.position.set(0, 5, 0);
 
   const controls = new OrbitControls(camera, canvas);
   controls.target.set(5, 5, 5);
@@ -53,8 +58,8 @@ function main() {
   scene.background = new THREE.Color(0x202225);
 
   {
-    const skyColor = 0xFFFFFF;  
-    const groundColor = 0xFFFFFF;
+    const skyColor = 0xffffff;
+    const groundColor = 0xffffff;
     const intensity = 0.8;
     const light1 = new THREE.PointLight(skyColor, intensity);
     light1.position.set(10, 10, 10);
@@ -62,22 +67,20 @@ function main() {
     const light2 = new THREE.PointLight(groundColor, intensity);
     light2.position.set(10, -10, -10);
 
-
     scene.add(light1);
     scene.add(light2);
   }
 
-
   function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
     const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
-    const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
+    const halfFovY = THREE.MathUtils.degToRad(camera.fov * 0.5);
     const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
     // compute a unit vector that points in the direction the camera is now
     // in the xz plane from the center of the box
-    const direction = (new THREE.Vector3())
-        .subVectors(camera.position, boxCenter)
-        .multiply(new THREE.Vector3(1, 1, 1))
-        .normalize();
+    const direction = new THREE.Vector3()
+      .subVectors(camera.position, boxCenter)
+      .multiply(new THREE.Vector3(1, 1, 1))
+      .normalize();
 
     // move the camera to a position distance units way from the center
     // in whatever direction the camera was from the center already
@@ -96,7 +99,9 @@ function main() {
 
   {
     const gltfLoader = new GLTFLoader();
-    gltfLoader.load('bike.gltf', (gltf) => {
+
+    // !!!HERE YOU CAN REPLACE THE MODEL WITH YOUR OWN!!!
+    gltfLoader.load("bike.gltf", (gltf) => {
       const root = gltf.scene;
       scene.add(root);
 
@@ -134,7 +139,7 @@ function main() {
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
     }
-    
+
     if (mouseDown == 0 && isAnimating) {
       scene.rotateZ(0.005);
     }
